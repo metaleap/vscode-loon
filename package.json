@@ -1,0 +1,122 @@
+{
+  "name": "vscode-loon",
+  "displayName": "vscode-loon",
+  "publisher": "metaleap",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.108.1"
+  },
+  "categories": [
+    "Programming Languages", "Notebooks", "Linters", "Formatters"
+  ],
+  "keywords": [
+    "Loon",
+    "Language",
+    "REPL",
+    "multi-root ready"
+  ],
+  "markdown": "github",
+  "bugs": {
+    "url": "https://github.com/metaleap/loon/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/metaleap/loon.git"
+  },
+  "homepage": "https://github.com/metaleap/loon",
+  "pricing": "Free",
+
+
+  "activationEvents": [
+    "workspaceContains:**/*.ls"
+  ],
+  "main": "./out/main.js",
+
+
+  "contributes": {
+    "languages": [
+      {
+        "id": "loon",
+        "aliases": [
+          "loon",
+          "Loon"
+        ],
+        "extensions": [
+          ".ls"
+        ],
+        "configuration": "./lang/loon.language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "loon",
+        "scopeName": "source.loon",
+        "path": "./lang/loon.tmGrammar.json"
+      }
+    ],
+    "configuration": [
+      {
+        "title": "Loon",
+        "properties": {
+          "loon.lsp.disabled": { "type": "boolean", "default": false, "description":
+            "Requires extension restart. If `true`, disables most extension functionality, other than basic language grammar (syntax highlighting, brackets auto-closing etc)." },
+          "loon.lsp.cmd": { "type": "array", "default": [ "loon", "lsp" ], "description":
+            "Requires extension restart. Command name and args of the Loon language server to run." }
+        }
+      }
+    ],
+    "configurationDefaults": {
+      "[loon]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.indentSize": 2
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [ { "id": "loonViewContainer", "title": "Loon", "icon": "$(coffee)" } ]
+    },
+    "views": {
+      "loonViewContainer": [
+        { "id": "loonViewInspectors", "name": "Insider Inspectors", "icon": "$(list-tree)" }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        { "command": "loon.inspector.none", "when": "view == loonViewInspectors", "group": "navigation" },
+        { "command": "loon.inspector.packs", "when": "view == loonViewInspectors", "group": "navigation" },
+        { "command": "loon.inspector.toks", "when": "view == loonViewInspectors", "group": "navigation" },
+        { "command": "loon.inspector.ast", "when": "view == loonViewInspectors", "group": "navigation" }
+      ]
+    },
+    "commands": [
+      { "command": "loon.inspector.none", "title": "Loon insider 0: none", "icon": "$(clear-all)" },
+      { "command": "loon.inspector.packs", "title": "Loon insider 1: in-session packs", "icon": "$(package)" },
+      { "command": "loon.inspector.toks", "title": "Loon insider 2: lexemes from source file", "icon": "$(list-flat)" },
+      { "command": "loon.inspector.ast", "title": "Loon insider 3: parse tree from lexemes", "icon": "$(list-tree)" }
+    ]
+  },
+
+
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.108.1",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "25.x",
+    "typescript-eslint": "^8.54.0",
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}

@@ -1,0 +1,205 @@
+{
+	"scopeName": "source.loon",
+	"name": "loon",
+	"comment": "loon language",
+	"fileTypes": [
+		"ls"
+	],
+	"patterns": [
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#brackets"
+		},
+		{
+			"include": "#delimiters"
+		},
+		{
+			"include": "#numlits"
+		},
+		{
+			"include": "#symbols"
+		},
+		{
+			"include": "#macroparams"
+		},
+		{
+			"include": "#idents"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#opishs"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.loon",
+					"begin": "\\/\\/",
+					"end": "$"
+				}, {
+					"name": "comment.loon.block",
+					"begin": "\\/\\*",
+					"end": "\\*\\/"
+				}, {
+					"name": "comment.loon",
+					"begin": "(?<!\\s+)^(#!\\/usr\\/bin\\/env\\s+loon.*)",
+					"end": "$"
+				}
+			]
+		},
+		"brackets": {
+			"patterns": [
+				{
+					"name": "punctuation.definition.bracket.round.loon",
+					"match": "\\(|\\)"
+				},
+				{
+					"name": "punctuation.definition.bracket.curly.loon",
+					"match": "\\{|\\}"
+				},
+				{
+					"name": "punctuation.definition.bracket.square.loon",
+					"match": "\\[|\\]"
+				}
+			]
+		},
+		"delimiters": {
+			"patterns": [
+				{
+					"name": "punctuation.loon",
+					"match": "(\\.|,|;|:)"
+				}
+			]
+		},
+		"symbols": {
+			"patterns": [
+				{
+					"name": "constant.other.loon",
+					"match": "#[@\"'`\\p{L}\\p{N}]+"
+				}
+			]
+		},
+		"macroparams": {
+			"patterns": [
+				{
+					"name": "variable.parameter.loon",
+					"match": "\\$[\\p{L}_]+[\\p{L}\\d_]*"
+				}
+			]
+		},
+		"idents": {
+			"patterns": [
+				{
+					"name": "variable.other.loon",
+					"match": "[\\p{L}_]+[\\p{L}\\d_]*"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.loon",
+					"match": "@[\\p{L}_]+[\\p{L}\\d_]*"
+				}
+			]
+		},
+		"opishs": {
+			"patterns": [
+				{
+					"name": "keyword.operator.loon",
+					"match": "#|$|([\\p{S}\\p{Me}\\p{Pi}\\p{Pf}\\p{Pd}\\p{Pc}!¡§%&/?\\\\¿@*ˍ·…]+)"
+				}
+			]
+		},
+		"numlits": {
+			"patterns": [
+				{
+					"name": "invalid.illegal.numeric.loon",
+					"match": "\\b0[0-7]*[89]\\d*\\b"
+				},
+				{
+					"name": "constant.numeric.floating-point.loon",
+					"match": "(\\.\\d+([Ee][\\-\\+]\\d+)?i?)\\b|\\b\\d+\\.\\d+(([Ee][\\-\\+]\\d+)?i?\\b)?"
+				},
+				{
+					"name": "constant.numeric.integer.loon",
+					"match": "\\b((0x[0-9a-fA-F]+)|(0[0-7]+i?)|(\\d+([Ee]\\d+)?i?)|(\\d+[Ee][\\-\\+]\\d+i?))\\b"
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"name": "string.quoted.double.loon",
+					"begin": "\"",
+					"end": "\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.loon"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.loon"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#string_escaped_char"
+						}
+					]
+				},
+				{
+					"name": "string.quoted.single.loon string.quoted.other.loon",
+					"begin": "'",
+					"end": "'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.loon"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.loon"
+						}
+					}
+				},
+				{
+					"name": "string.quoted.raw.loon string.quoted.other.loon",
+					"begin": "`",
+					"end": "`",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.loon"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.loon"
+						}
+					}
+				}
+			]
+		},
+		"string_escaped_char": {
+			"patterns": [
+				{
+					"name": "constant.character.escape.loon",
+					"match": "\\\\([0-7]{3}|[abfnrtv\\\\'\"]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})"
+				},
+				{
+					"name": "invalid.illegal.unknown-escape.loon",
+					"match": "\\\\[^0-7xuUabfnrtv\\'\"]"
+				}
+			]
+		}
+	}
+}
