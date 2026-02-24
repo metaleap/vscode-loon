@@ -6,36 +6,16 @@
 		"ls"
 	],
 	"patterns": [
-		{
-			"include": "#strings"
-		},
-		{
-			"include": "#comments"
-		},
-		{
-			"include": "#brackets"
-		},
-		{
-			"include": "#numlits"
-		},
-		{
-			"include": "#symbols"
-		},
-		{
-			"include": "#macroparams"
-		},
-		{
-			"include": "#idents"
-		},
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#opishs"
-		},
-		{
-			"include": "#delimiters"
-		}
+		{ "include": "#strings" },
+		{ "include": "#comments" },
+		{ "include": "#brackets" },
+		{ "include": "#numlits" },
+		{ "include": "#symbols" },
+		{ "include": "#placeholders" },
+		{ "include": "#idents" },
+		{ "include": "#keywords" },
+		{ "include": "#opishs" },
+		{ "include": "#delimiters" }
 	],
 	"repository": {
 		"comments": {
@@ -83,15 +63,7 @@
 			"patterns": [
 				{
 					"name": "constant.other.loon",
-					"match": "#[@\"'`\\p{L}\\p{N}]+"
-				}
-			]
-		},
-		"macroparams": {
-			"patterns": [
-				{
-					"name": "variable.parameter.loon",
-					"match": "\\$[\\p{L}_]+[\\p{L}\\d_]*"
+					"match": "true|false|nil|#\\p{L}[\\p{L}\\p{N}]*"
 				}
 			]
 		},
@@ -99,7 +71,15 @@
 			"patterns": [
 				{
 					"name": "variable.other.loon",
-					"match": "[\\p{L}_]+[\\p{L}\\d_]*"
+					"match": "[\\p{L}]+[\\p{L}\\d_]*"
+				}
+			]
+		},
+		"placeholders": {
+			"patterns": [
+				{
+					"name": "variable.parameter.loon",
+					"match": "_[\\p{L}\\d_]*"
 				}
 			]
 		},
@@ -107,7 +87,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.loon",
-					"match": "@[\\p{L}_]+[\\p{L}\\d_]*"
+					"match": "\\$[\\p{L}_]+[\\p{L}\\d_]*"
 				}
 			]
 		},
@@ -115,7 +95,7 @@
 			"patterns": [
 				{
 					"name": "keyword.operator.loon",
-					"match": "#|:=|([\\p{S}\\p{Me}\\p{Pi}\\p{Pf}\\p{Pd}\\p{Pc}!¡§%&/?\\\\¿@*ˍ·…]+)"
+					"match": ":=|([\\p{S}\\p{Me}\\p{Pi}\\p{Pf}\\p{Pd}\\p{Pc}!¡§%&/?\\\\¿*ˍ·…]+)"
 				}
 			]
 		},
@@ -151,11 +131,7 @@
 							"name": "punctuation.definition.string.end.loon"
 						}
 					},
-					"patterns": [
-						{
-							"include": "#string_escaped_char"
-						}
-					]
+					"patterns": [ { "include": "#string_escaped_char" } ]
 				},
 				{
 					"name": "string.quoted.single.loon string.quoted.other.loon",
