@@ -95,7 +95,7 @@
 			"patterns": [
 				{
 					"name": "keyword.operator.loon",
-					"match": ":=|([\\p{S}\\p{Me}\\p{Pi}\\p{Pf}\\p{Pd}\\p{Pc}!¡§%&/?\\\\¿*ˍ·…]+)"
+					"match": "\\?\\.\\.|:=|([\\p{S}\\p{Me}\\p{Pi}\\p{Pf}\\p{Pd}!¡§%&/?\\\\¿*ˍ·…]+)"
 				}
 			]
 		},
